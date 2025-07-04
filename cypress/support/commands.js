@@ -35,7 +35,11 @@ Cypress.Commands.add('logIn', (userName, password) => {
   cy.get('button.radius').click();
 });
 
-Cypress.Commands.add('checkFleshMessage', (message) => {
+Cypress.Commands.add('checkFlashMessage', (message) => {
   cy.get('div#flash')
     .should('contain.text', message);
+});
+
+Cypress.Commands.add('checkSuccessfulLogin', () => {
+  cy.url().should('include', '/secure');
 });
