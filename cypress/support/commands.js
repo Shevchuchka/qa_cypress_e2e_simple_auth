@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('typeData', (nameAttr, data) => {
+  cy.get(`[name=${nameAttr}]`).type(data);
+});
+
+Cypress.Commands.add('logIn', (userName, password) => {
+  cy.typeData('username', userName);
+  cy.typeData('password', password);
+
+  cy.get('button.radius').click();
+});
+
+Cypress.Commands.add('checkFleshMessage', (message) => {
+  cy.get('div#flash')
+    .should('contain.text', message);
+});
